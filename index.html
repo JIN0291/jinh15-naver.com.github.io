@@ -4,30 +4,40 @@
     <meta charset="UTF-8" />
     <title>Redirecting to Telegram...</title>
 
-    <!-- ✅ GA 태그 -->
+    <!-- ✅ Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3BHK0LVXSR"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-3BHK0LVXSR');
-    </script>
+      function gtag() {
+        dataLayer.push(arguments);
+      }
 
-    <!-- ✅ GA 이벤트 전송 후 1초 뒤 리디렉션 -->
-    <script>
-      setTimeout(function () {
-        gtag('event', 'auto_redirect_to_telegram', {
-          event_category: 'engagement',
-          event_label: 'GitHub to Telegram'
-        });
+      window.addEventListener('load', function () {
+        gtag('js', new Date());
+        gtag('config', 'G-3BHK0LVXSR');
 
-        // 1초 뒤 텔레그램으로 이동
+        // ✅ 디버깅용 로그
+        console.log("📊 GA 초기화 완료");
+
+        // ✅ 0.3초 후 이벤트 전송
         setTimeout(function () {
-          window.location.href = "https://t.me/smart_stock9";
-        }, 1000);
-      }, 500);
+          gtag('event', 'auto_redirect_to_telegram', {
+            event_category: 'engagement',
+            event_label: 'GitHub to Telegram'
+          });
+
+          console.log("📨 이벤트 전송 완료: auto_redirect_to_telegram");
+
+          // ✅ 1초 후 이동
+          setTimeout(function () {
+            console.log("➡️ 텔레그램 이동 중...");
+            window.location.href = "https://t.me/smart_stock9";
+          }, 1000);
+        }, 300);
+      });
     </script>
   </head>
+
   <body style="text-align: center; padding-top: 50px;">
     <p>잠시만 기다려 주세요. 텔레그램 채널로 자동 연결 중입니다...</p>
     <p><a href="https://t.me/smart_stock9">자동 이동되지 않으면 여기를 클릭</a></p>
