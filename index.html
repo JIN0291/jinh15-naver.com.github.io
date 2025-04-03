@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <title>Redirecting to Telegram...</title>
 
-    <!-- ✅ Google Analytics -->
+    <!-- ✅ Google Analytics 연결 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-3BHK0LVXSR"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,28 +12,29 @@
         dataLayer.push(arguments);
       }
 
-      window.addEventListener('load', function () {
-        // ✅ GA 초기화
+      // GA 스크립트가 로드된 이후에 실행
+      window.addEventListener('load', () => {
+        // ✅ GA 설정
         gtag('js', new Date());
-        gtag('config', 'G-3BHK0LVXSR', { debug_mode: true }); // 디버깅용 옵션 추가
+        gtag('config', 'G-3BHK0LVXSR', { debug_mode: true });
 
         console.log("📊 GA 초기화 완료");
 
-        // ✅ 0.3초 후 이벤트 전송
-        setTimeout(function () {
+        // ✅ 0.5초 후 사용자 정의 이벤트 전송
+        setTimeout(() => {
           gtag('event', 'auto_redirect_to_telegram', {
             event_category: 'engagement',
-            event_label: 'GitHub to Telegram'
+            event_label: 'GitHub to Telegram',
           });
 
           console.log("📨 이벤트 전송 완료: auto_redirect_to_telegram");
 
           // ✅ 1초 후 텔레그램 이동
-          setTimeout(function () {
+          setTimeout(() => {
             console.log("➡️ 텔레그램 이동 중...");
             window.location.href = "https://t.me/smart_stock9";
           }, 1000);
-        }, 300);
+        }, 500);
       });
     </script>
   </head>
